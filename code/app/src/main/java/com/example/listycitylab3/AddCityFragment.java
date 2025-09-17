@@ -17,6 +17,16 @@ public class AddCityFragment extends DialogFragment {
         void addCity(City city);
     }
     private AddCityDialogListener listener;
+
+//    public static AddCityFragment newInstance(City city) {
+//        Bundle args = new Bundle();
+//        args.putSerializable("city", city);
+//
+//        AddCityFragment fragment = new AddCityFragment();
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -36,7 +46,7 @@ public class AddCityFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         return builder
                 .setView(view)
-                .setTitle("Add a city")
+                .setTitle("Add/edit city")
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Add", (dialog, which) -> {
                     String cityName = editCityName.getText().toString();
