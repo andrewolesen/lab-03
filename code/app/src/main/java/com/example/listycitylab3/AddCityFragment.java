@@ -18,14 +18,14 @@ public class AddCityFragment extends DialogFragment {
     }
     private AddCityDialogListener listener;
 
-//    public static AddCityFragment newInstance(City city) {
-//        Bundle args = new Bundle();
-//        args.putSerializable("city", city);
-//
-//        AddCityFragment fragment = new AddCityFragment();
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+    static AddCityFragment newInstance(City city) {
+        Bundle args = new Bundle();
+        args.putSerializable("city", city);
+
+        AddCityFragment fragment = new AddCityFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
