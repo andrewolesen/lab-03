@@ -21,6 +21,11 @@ public class MainActivity extends AppCompatActivity implements
         cityAdapter.add(city);
         cityAdapter.notifyDataSetChanged();
     }
+
+    public CityArrayAdapter getCityAdapter() {
+        return cityAdapter;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements
         cityList.setOnItemClickListener((parent, view, position, id) -> {
             City clickedCity = dataList.get(position);
 
-            // Show fragment (you could pass clickedCity if you want to edit)
             AddCityFragment fragment = AddCityFragment.newInstance(clickedCity);
             fragment.show(getSupportFragmentManager(), "Edit City");
         });

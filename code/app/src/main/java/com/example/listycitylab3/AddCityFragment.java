@@ -43,6 +43,19 @@ public class AddCityFragment extends DialogFragment {
                 LayoutInflater.from(getContext()).inflate(R.layout.fragment_add_city, null);
         EditText editCityName = view.findViewById(R.id.edit_text_city_text);
         EditText editProvinceName = view.findViewById(R.id.edit_text_province_text);
+
+        City cityToEdit;
+        if (getArguments() != null) {
+            cityToEdit = (City) getArguments().getSerializable("city");
+        } else {
+            cityToEdit = null;
+        }
+
+        if (cityToEdit != null) {
+            editCityName.setText(cityToEdit.getName());
+            editProvinceName.setText(cityToEdit.getProvince());
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         return builder
                 .setView(view)
@@ -51,7 +64,14 @@ public class AddCityFragment extends DialogFragment {
                 .setPositiveButton("Add", (dialog, which) -> {
                     String cityName = editCityName.getText().toString();
                     String provinceName = editProvinceName.getText().toString();
+                    if (cityToEdit != null) {
+                        cityToEdit.setName(cityName);
+                        cityToEdit.setProvince(provinceName);
+
+                        ((MainActivity) getActivity()).getCityAdapter().notifyDataSetChanged();
+                    } else {
                     listener.addCity(new City(cityName, provinceName));
+                    }
                 })
                 .create();
     }
